@@ -1,4 +1,4 @@
-from htmlnode import HTMLNode
+from src.htmlnode import HTMLNode
 
 
 class LeafNode(HTMLNode):
@@ -7,7 +7,7 @@ class LeafNode(HTMLNode):
 
     def to_html(self):
         if not self.value:
-            raise ValueError()
+            raise ValueError("Value missing from node")
         
         if not self.tag:
             return self.value
