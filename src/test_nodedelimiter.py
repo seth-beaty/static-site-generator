@@ -27,9 +27,9 @@ class TestNodeDelimiter(TestCase):
     def test_missing_closing_delimiter(self):
         node = TextNode("This is `open.", TextType.TEXT)
 
-        with self.assertRaises(Exception) as context:
+        with self.assertRaises(ValueError) as context:
             split_nodes_delimiter([node], "`", TextType.CODE)
-            self.assertEqual( str(context.exception), "Missing closing delimiter for `")
+        self.assertEqual( str(context.exception), "Invalid Markdown: Uneven delimiters in text.")
 
     def test_only_delimiters(self):
         node = TextNode("****", TextType.TEXT)
@@ -42,4 +42,4 @@ class TestNodeDelimiter(TestCase):
         with self.assertRaises(ValueError) as context:
             split_nodes_delimiter([input_node], '**', TextType.BOLD)
             print("Exception message:", str(context.exception))
-            self.assertEqual(str(context.exception), 'Invalid Markdown: No content between delimiters')
+        self.assertEqual(str(context.exception), "Invalid Markdown: Uneven delimiters in text.")

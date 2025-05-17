@@ -11,11 +11,15 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
         # Check to make sure input is valid
         segments = node.text.split(delimiter)
 
-        if len(segments) % 2 == 0:
-            raise ValueError("Invalid Markdown: Uneven delimiters in text.")
+        if not any(char.isalnum() for char in node.text):
+            new_nodes.append(node)
+            continue
         
         if all(segment.strip() == "" for segment in segments):
             raise ValueError("Invalid Markdown: No content between delimiters")
+        
+        elif len(segments) % 2 == 0:
+            raise ValueError("Invalid Markdown: Uneven delimiters in text.")
 
         # Skip non-text nodes
         if node.text_type != TextType.TEXT:

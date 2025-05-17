@@ -1,2 +1,2 @@
 python3 -m unittest discover -s src
-python3 -m unittest discover -s utils
+python3 -m unittest discover -s src/utils

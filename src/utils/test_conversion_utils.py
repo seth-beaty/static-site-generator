@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from src.leafnode import LeafNode
 from src.textnode import TextNode, TextType
-from utils.conversion_utils import text_node_to_html_node
+from src.utils.conversion_utils import text_node_to_html_node
 
 class TestConversionUtils(TestCase):
     def test_simple_nodes(self):
